@@ -3,16 +3,24 @@ require_relative './Model.rb'
 require_relative './Controller.rb'
 
 class View
+
   def initialize(model, controller)
+    # Gives the View access to the Model and Controller
     @model = model
     @controller = controller
     
+    # Creates the top-level Window container...
     @window = Gtk::Window.new("The Game of Set")
+    # ...and an event listener that listens for the 'X' button being pressed.
     @window.signal_connect("destroy") { Gtk.main_quit }
 
+    # Creates the main grid, which will eventually contain the button, statistic, and card sections...
     @mainGrid = Gtk::Grid.new
+
+    # ... and adds it to the Window.
     @window.add(@mainGrid)
 
+    # Renders the button, statistic, and card sections.
     renderButtons
     renderStats
     renderCards

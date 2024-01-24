@@ -1,6 +1,8 @@
 require_relative './Table.rb'
 
 class Model
+    attr_accessor :table, :selectedCards, :setsFound, :score, :duration
+
     def startNewGame
         @table = Table.new
         @selectedCards = []
@@ -11,6 +13,7 @@ class Model
 
     def initialize
         startNewGame
+    end
 
     def increase_score
         @score += 1
@@ -23,11 +26,4 @@ class Model
     def validateSet
         puts "Validating set..."
     end
-
-    def table; @table; end
-    def selectedCards; @selectedCards; end
-    def setsFound; @setsFound; end
-    def score; @score; end
-    def duration; @duration; end
-end
 end
