@@ -1,16 +1,32 @@
 require_relative './Card.rb'
 
 class Table
-    def generateDeck
-        deck_size = 81
-        deck = Array.new deck_size
+    attr_accessor :deck, :cards
 
-        for i in 0...deck_size
-            deck[i] = i + 1
+    def initialize
+        @deck = Array.new
+        @cards = Array.new
+        generateDeck
+        draw 12
+    end
+
+    def generateDeck
+        num_shapes = 1..3
+        shapes = ["diamond", "squiggle", "oval"]
+        shadings = ["solid", "striped", "open"]
+        colors = ["red", "green", "blue"]
+
+        num_shapes.each do |num|
+            shapes.each do |shape|
+                shadings.each do |shade|
+                    colors.each do |color|
+                        @deck.push Card.new(num, shape, shade, color)
+                    end
+                end
+            end
         end
 
-        deck = deck.shuffle
-        return deck
+        @deck.shuffle!
     end
 
     def draw(num_cards)
@@ -21,23 +37,7 @@ class Table
         end
     end
 
-    def initialize
-        @deck = generateDeck
-        @cards = Array.new
-        draw 12
-
     def removeSet
         puts "Removing set..."
     end
-
-    def deck; @deck; end
-    def cards; @cards; end
-end
-
-# table = Table.new
-# table.draw 3
-# puts "deck: "
-# puts table.deck
-# puts "cards: "
-# puts table.cards
 end
