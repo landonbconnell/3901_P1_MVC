@@ -1,6 +1,3 @@
-require_relative 'Model.rb'
-require_relative 'View.rb'
-
 class Controller
     def initialize(model)
         @model = model
@@ -31,5 +28,9 @@ class Controller
     def startNewGame
         @model.startNewGame
         syncModelAndView
-    end    
+    end
+    
+    def clickCard
+        # TODO
+    end
 end
