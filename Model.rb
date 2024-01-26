@@ -3,16 +3,16 @@ require_relative './Table.rb'
 class Model
     attr_accessor :table, :selectedCards, :setsFound, :score, :duration
 
+    def initialize
+        startNewGame
+    end
+
     def startNewGame
         @table = Table.new
         @selectedCards = []
         @setsFound = 0
         @score = 0
         @duration = 0
-    end
-
-    def initialize
-        startNewGame
     end
 
     def increase_score
